@@ -1,0 +1,128 @@
+body, html {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    overflow: hidden;
+    background-color: #000; /* 纯黑底色 */
+}
+
+/* 舞台背景微光 */
+.stage-dark {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center 40%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+    z-index: 1;
+}
+
+/* --- 帷幕基础设定 --- */
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 45vw; /* 帷幕拉开后占屏幕的宽度 */
+    height: 100vh;
+    z-index: 10;
+    
+    /* 丝绒质感：用超密集的线性渐变制造光影褶皱 */
+    background-color: #4a0404;
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.8) 0%,
+        rgba(255,255,255,0.06) 12%,
+        rgba(0,0,0,0.4) 25%,
+        rgba(0,0,0,0.7) 40%,
+        rgba(255,255,255,0.03) 55%,
+        rgba(0,0,0,0.5) 70%,
+        rgba(255,255,255,0.06) 85%,
+        rgba(0,0,0,0.8) 100%
+    );
+
+    /* 动画：拉开，并且停留在最后的位置 (forwards) */
+    animation-duration: 2.5s; 
+    animation-timing-function: cubic-bezier(0.6, 0, 0.2, 1); 
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards; 
+}
+
+/* --- 左侧帷幕 --- */
+.curtain-left {
+    left: 0;
+    /* 关键！动画结束时，它只移动 -40%，而不是完全移出屏幕（保留25vw在屏幕内） */
+    animation-name: openLeft;
+    /* 加个阴影，产生立体空间感 */
+    box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+}
+
+/* --- 右侧帷幕 --- */
+.curtain-right {
+    right: 0;
+    animation-name: openRight;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+}
+
+/* --- 动画关键帧 --- */
+@keyframes openLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-55%); } /* 停下，留出边缘 */
+}
+@keyframes openRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(55%); }
+}
+
+/* --- 修复“丑三角形”：用伪元素做平滑的波浪边缘 --- */
+/* 这里我们用伪元素盖住边缘，通过圆角形成一个波浪/S型的感觉 */
+.curtain-left::after {
+    content: '';
+    position: absolute;
+    right: -50px; /* 凸出到帷幕外面 */
+    top: 0;
+    width: 100px;
+    height: 100%;
+    background-color: #4a0404; /* 和帷幕同色 */
+    /* 用 border-radius 制造起伏的弧线 */
+    border-radius: 0 0 50% 50% / 0 0 30% 70%;
+    /* 增加光影 */
+    box-shadow: inset -10px 0 20px rgba(0,0,0,0.8);
+}
+
+.curtain-right::after {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    background-color: #4a0404;
+    border-radius: 0 0 50% 50% / 0 0 70% 30%;
+    box-shadow: inset 10px 0 20px rgba(0,0,0,0.8);
+}
+
+/* --- 中间内容排版 --- */
+.content {
+    position: absolute;
+    inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    z-index: 5; /* 在帷幕下方，但比黑底高 */
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards;
+    animation-delay: 2.5s; 
+    text-align: center;
+}
+
+.content h1 {
+    color: #f7f5f0;
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+.content p {
+    color: #d4af37; /* 金色文字 */
+    font-family: sans-serif;
+    letter-spacing: 2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

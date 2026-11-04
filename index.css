@@ -1,0 +1,133 @@
+/* 基础设置 */
+:root {
+    --ink: #1c1e18;       /* 背景色 */
+    --cream: #f4e7cb;     /* 主文字色 */
+    --gold: #d9b875;      /* 点缀色 */
+    --muted: rgba(244, 231, 203, 0.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--ink);
+    color: var(--cream);
+    font-family: "Cormorant Garamond", serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 背景加一点若有若无的辐射渐变 */
+    background-image: radial-gradient(circle at center, #2a2c24 0%, var(--ink) 100%);
+}
+
+.home-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 50px 20px;
+}
+
+/* 头部标题区 */
+.home-header {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.eyebrow {
+    font-family: "Inter", sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.home-header h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    margin-bottom: 25px;
+}
+
+.home-header .description {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 目录列表 */
+.exhibition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 每一个入口的样式 */
+.exhibit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cream);
+    padding: 25px 30px;
+    border: 1px solid rgba(244, 231, 203, 0.15); /* 极细的边框 */
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 悬停时的惊艳效果 */
+.exhibit-item:hover {
+    background: rgba(217, 184, 117, 0.08); /* 金色微光 */
+    border-color: var(--gold);
+    transform: translateX(10px); /* 向右滑动一点点 */
+}
+
+.exhibit-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.exhibit-info .num {
+    font-family: "Inter", sans-serif;
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+}
+
+.exhibit-info h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 5px;
+}
+
+.exhibit-info p {
+    font-family: "Inter", sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.exhibit-arrow {
+    font-size: 1.8rem;
+    color: var(--gold);
+    transition: transform 0.4s ease;
+}
+
+.exhibit-item:hover .exhibit-arrow {
+    transform: translate(5px, -5px); /* 箭头往右上角飞 */
+}
+
+/* 底部 */
+.home-footer {
+    text-align: center;
+    margin-top: 80px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(244, 231, 203, 0.3);
+}
