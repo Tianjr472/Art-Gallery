@@ -73,8 +73,8 @@ body {
     inset: 0;
     z-index: 1;
     
-    /* 👇 注意这里的路径和引号！文件名有空格一定要加单引号 👇 */
-    background-image: url('Baroque images/background\ curtain.png'); 
+    /*注意这里的路径和引号！文件名有空格一定要加单引号*/
+    background-image: url('Baroque images/backgroundcurtain.png'); 
     
     background-size: cover;
     background-position: center;
