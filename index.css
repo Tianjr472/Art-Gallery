@@ -10,7 +10,7 @@ body {
 }
 
 /* =========================================
-   🎮 连续渐变的动态背景层
+   连续渐变的动态背景层
    ========================================= */
 .dynamic-bg {
     position: fixed;
@@ -27,7 +27,7 @@ body {
 }
 
 /* =========================================
-   🕒 贯穿全屏的时间轴
+   贯穿全屏的时间轴
    ========================================= */
 .timeline-main-line {
     position: fixed;
@@ -60,7 +60,7 @@ body {
     position: relative;
     z-index: 3;
     
-    /* 👈 核心改动：去掉了 scroll-snap-type，变成自由丝滑滚动 */
+    /* 核心改动：去掉了 scroll-snap-type，变成自由丝滑滚动 */
     scroll-behavior: smooth;
 }
 .horizontal-scroll-container::-webkit-scrollbar { display: none; }
