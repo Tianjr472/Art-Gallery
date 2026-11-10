@@ -15,3 +15,14 @@ window.addEventListener('load', () => {
     rightCurtain.style.webkitMaskImage = svgMaskRight;
     rightCurtain.style.maskImage = svgMaskRight;
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    // 等过场动画（0.5s延迟 + 2s滑动）结束后
+    setTimeout(() => {
+        const transitionLayer = document.querySelector('.transition-layer');
+        if (transitionLayer) {
+            // 把用完的动画层销毁
+            transitionLayer.remove();
+        }
+    }, 2500);
+});
